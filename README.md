@@ -2,7 +2,7 @@
 
 ## Prerequisites ##
 
-- python >= 2.5
+- python >= 2.7
 - pip
 - virtualenv/wrapper (optional)
 - foreman (gem)
