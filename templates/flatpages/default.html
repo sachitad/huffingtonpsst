@@ -1,0 +1,20 @@
+{% extends 'huffpsst/base.html' %}
+{% load static from staticfiles %}
+{% load extended %}
+
+{% block TITLE %}{{ flatpage.title }}{% endblock %}
+
+{% block BODY %}
+    <div class="container" id="flat">
+        <div class="row">
+            <div class="col-md-12 post">
+                <div class="title">
+                    {{ flatpage.title }}
+                </div>
+                <div class="content">
+                    {{ flatpage.content|markdownRender }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock BODY %}

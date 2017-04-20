@@ -1,0 +1,36 @@
+{% extends 'hufflive_base.html' %}
+{% load video_tags humanize wagtailcore_tags %}
+
+{% block styles %}
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+    <div class="col-md-5">
+        <embed width="480" height="275" src="http://www.youtube.com/v/{{ self.youtube_link|get_video_id }}?rel=0&autoplay=1" type="application/x-shockwave-flash">
+        <h2>{% now "F j, o" %}</h2>
+        {% get_videos as videos %}
+        {% for video in videos %}
+            <p><a href="{% pageurl video %}" style="color: #808080;">{{ video.title }}</a></p>
+            <hr />
+        {% endfor %}
+    </div>
+
+    <div class="col-md-7">
+        <div class="well boxy">
+            <p><span style="color: red;">Live Again</span> features highlights from previously-aired programming.
+                Our Live Stream starts at <b>10AM ET</b> Monday through <b>Friday.</b></p>
+        </div>
+        <div class="well boxy">
+            {% get_video_comments as comments %}
+            <p>Comments ({{ comments|length }})</p>
+            <hr />
+            {% for comment in comments %}
+                <p><b>{{ comment.name }}, {{ comment.bio }}</b><span class="pull-right">{{ comment.created|naturaltime }}</span></p>
+                <p>-- {{ comment.comment }}</p>
+            {% endfor %}
+
+        </div>
+    </div>
+    </div>
+{% endblock %}

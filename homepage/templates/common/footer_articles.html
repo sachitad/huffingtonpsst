@@ -1,0 +1,48 @@
+{% load wagtailimages_tags wagtailcore_tags %}
+
+<!-- Frontpage Big News  -->
+	<div id="hp_bignews_pages_container" class="border_for_widget "
+         style="margin: 5px 11px 12px 9px;" data-beacon='{"p":{"mnid":"homepage_big_news_pages_v2", "plid":1}}'>
+	<div class="round_header">
+		<div class="float_left hp_bignews_pages_title bold arial_12 color_000101">HUFFPPST'S BIG NEWS PAGES</div>
+		<div class="float_right hp_bignews_pages_view_all">
+			<a href="#" class="bold arial_12 color_03497e" data-beacon='{"p":{"lnid":"view_all_link"}}'>View All</a>
+		</div>
+		<div class="hp_bignews_pages_pagination snp_arrows float_right">
+			<div id="hp_frontpage_bignews_previous_arrow" class="float_left main_prev_arrow" data-beacon='{"p":{"lnid":"bn_prev_arrow"}}'></div>
+			<div class="float_left center bold arial_11 count_of_pages"><span id="hp_frontpage_bignews_current_page">1</span> of <span>2</span></div>
+			<div id="hp_frontpage_bignews_next_arrow" class="float_left main_next_arrow" data-beacon='{"p":{"lnid":"bn_next_arrow"}}'></div>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<!--'-->
+	<div id="frontpage_bignews_pages" class="white_bg clearfix">
+
+
+		<div id="hp_frontpage_bignews_page_1">
+
+            {% for article in articles %}
+			<div class="big_news_pages_story-fp">
+				<div class="b-n-image_and_title_hint">
+					<a href="{% pageurl article %}" class="b-n-image_and_title" data-beacon='{"p":{"lnid":"big_news_bpage_0"}}'>
+						{% image article.featured_image fill-74x58 class="unloaded-image" %}
+					</a>
+					<div>
+						<div class="b-n-title">
+							<a href="{% pageurl article %}" data-beacon='{"p":{"lnid":"big_news_bpage_0"}}'>
+                                {{ article.title }}</a>
+						</div>
+					</div>
+				</div>
+				<div class="tag_topic_title">
+                    <a href="{% pageurl article %}" title="{{ article.title }}"
+                       data-beacon='{"p":{"lnid":"big_news_bpage_0"}}'>{{ article.get_parent }}</a></div>
+			</div>
+            {% endfor %}
+
+
+
+		</div>
+
+			</div>
+</div>

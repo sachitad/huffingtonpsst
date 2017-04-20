@@ -1,0 +1,35 @@
+{% extends 'huffpsst/base.html' %}
+{% load static from staticfiles %}
+
+{% block HEADER %}
+    <header id="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12"><h1 class="site-logo"><a href="#"><img
+                        src="{% static 'huffpsst/img/logo.png' %}" width="415" height="99" alt="site-logo"></a></h1>
+                </div>
+            </div>
+        </div>
+    </header>
+{% endblock %}
+
+{% block FOOTER %}
+{% endblock %}
+
+{% block BODY_CLASS %}bg-image{% endblock %}
+
+{% block BODY_ID %}auth{% endblock %}
+
+{% block BODY %}
+    <div id="page">
+        <div class="container">
+            <div class="row text-center">
+                <h2 class="title-1">500</h2>
+                <p class="paragraph-one">Whoops, something went wrong there. Our engineers have been informed.</p>
+                <br/>
+                <br/>
+                <a href="{% url 'home' %}" class="btn btn-primary btn-lg">Back to Homepage</a>
+            </div>
+        </div>
+    </div>
+{% endblock BODY %}

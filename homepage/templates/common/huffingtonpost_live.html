@@ -1,0 +1,31 @@
+{% load wagtailcore_tags %}
+<div id="hp_live_scroll_main" style="display: block;">
+    <span class="hp-live-right-img"></span>
+    <span class="hp-live-logo">HUFFPSST <span>LIVE</span></span>
+    <div id="hp-live-scroll-container">
+    <span class="hp-live-left-img"></span>
+    <ul id="hp_live_scroll_pages" style="width: 3131px; left: -210px;">
+    {% for video in videos %}
+        {% if not forloop.first %}
+     <li id="hp_live_page_{{ forloop.counter }}">
+            <div class="hp-live-headline">
+                <a target="_blank" href="{% pageurl video %}">
+                    <span>{{ video.title }}</span>
+                </a>&nbsp;
+            </div>
+        </li>
+        {% endif %}
+    {% endfor %}
+    {% if videos %}
+    <li id="hp_live_page_1">
+            <div class="hp-live-headline">
+                <a target="_blank" href="{% pageurl videos.0 %}">
+                    <span>{{ videos.0.title }}</span>
+                </a>&nbsp;
+            </div>
+        </li>
+    {% endif %}
+       </ul>
+    </div>
+<div style="clear:both;"></div>
+</div>

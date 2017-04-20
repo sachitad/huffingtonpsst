@@ -1,0 +1,40 @@
+{% load menu_tags wagtailcore_tags %}
+{% get_site_root as site_root %}
+<ul class="jd_menu jd_menu_slate star_for_local" xmlns="http://www.w3.org/1999/html">
+ <li class="n_home first" id="li_homepage">
+  <a href="{% pageurl site_root %}" class="navbar-brand">{{ site_root.title }}</a>
+ </li>
+ {% for menuitem in menuitems %}
+
+   <li class='{% if menuitem.title == 'Politics' %}n_uk-politics
+               {% elif menuitem.title == 'Business' %}n_uk-business n_empty
+               {% elif menuitem.title == 'Entertainment' %}n_uk-entertainment
+               {% elif menuitem.title == 'Tech' %}n_uk-tech
+               {% elif menuitem.title == 'Comedy' %}n_uk-comedy
+               {% elif menuitem.title == 'Maritime' %}n_media
+               {% elif menuitem.title == 'Worldpost' %}n_uk-politics
+               {% elif menuitem.title == 'Healthy Living' %}n_healthy-living
+               {% elif menuitem.title == 'HuffPsst Live' %}n_live
+               {% endif %}' id='li{{ forloop.counter }}'>
+
+  <div class='relative'>
+   <a class='topnav_tab_link' href='{% pageurl menuitem %}'>{{ menuitem.title }}</a>
+    {% top_menu_children parent=menuitem %}
+
+   </div>
+  </li>
+{% endfor %}
+    <li id="all-sections" class="n_all_sections last" data-beacon="{"p":{"lnid":"all-sections"}}">
+        <div class="relative">
+        <a href="javascript:void(0);">
+        ALL SECTIONS
+        <span class="arrow-down"></span>
+        </a>
+        <div class="menu absolute white_bg right_align">
+        <div class="columns clearfix">
+
+                {% all_sections %}
+
+        </div>
+    </li>
+</ul>

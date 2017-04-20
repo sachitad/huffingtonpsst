@@ -1,0 +1,40 @@
+{% load menu_tags wagtailcore_tags comment_tags %}
+
+<div class='menu absolute'>
+    <div class='menu_h clearfix'>
+     <div class='trending' data-beacon='{"p":{"lnid":"trending"}}'>  <!-- last update is 20140812_071017 -->
+      <ul>
+        {% for child in menuitems_children %}
+        <li id='id_trending_{{ child.pk }}' data-beacon='{"p":{"plid":5667341}}'>
+          <a href='{% pageurl child %}'>{{ child.title }}
+              <span class="comments" data-anchor="#comments"><span class="talkbubble"><span></span></span><span class="comments-count">
+                  {% count_comments_neat child.pk %}</span></span></a>
+        </li>
+        {% endfor %}
+
+       <li class='vertical_info'>
+         <div class='float_right social_widget'>
+          <div class='i_v_fb_like like_fb_like_action i_v_with_count'>
+          </div>
+         </div>
+         <a href='{% pageurl parent %}'>Go to {{ parent.title }}<span class='arrow'><span></span></span></a>
+        </li>
+       </ul>
+      </div>
+      {% if not parent.title == 'HuffPsst Live' %}
+      <div class='more_box'>
+       <strong class='title'>More in {{ parent.title }}</strong>
+          {% for tag in tags %}
+            {{ tag }}
+          {% endfor %}
+       <ul class='vertical_list' data-beacon='{"p":{"lnid":"more_in"}}'>
+        {% get_tags parent as tags %}
+        {% for tag in tags %}
+        <li><a href=''>{{ tag|capfirst }}</a></li>
+        {% endfor %}
+       </ul>
+      </div>
+              {% endif %}
+
+     </div>
+    </div>

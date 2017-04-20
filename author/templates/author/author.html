@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load comment_tags %}
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
+
+{% block content %}
+    <h3 class="text-info">{% image self.image fill-80x80 %} {{ self.author }}</h3>
+
+    <p><b>Biography:</b> {{ self.biography|richtext }}</p>
+    <h3 class="text-success text-center">Entries by {{ self.author }}</h3>
+    <hr />
+
+    {% for article in self.article_set.all %}
+        {% if article.live and article.is_blog %}
+            <h3>{{ article.title }}</h3>
+            <b><a href="{% pageurl article %}">{{ article.related_comments.all|active }} comments</a> | Posted On: {{ article.created }}</b>
+            <p class="text-center">{% image article.featured_image fill-1000x300 %}</p>
+            {{ article.body|richtext|truncatewords_html:50 }}
+            {% if article.custom_redirect_url %}
+                <a href="{{ article.custom_redirect_url }}">Read More</a>
+            {% else %}
+                <a href="{% pageurl article %}">Read More</a>
+            {% endif %}
+            <hr />
+        {% endif %}
+    {% endfor %}
+
+{% endblock %}

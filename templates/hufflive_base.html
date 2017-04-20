@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+{% load menu_tags home_page_tags static wagtailcore_tags video_tags %}
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>HuffPsst Live</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'css/huff-live.css' %}" rel="stylesheet">
+
+    {% block styles %}
+    {% endblock %}
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <h2><a href="/live/"" style="text-decoration : none"><span style="color: red;">HUFFPSST</span><span style="color: white;"> LIVE</span></a></h2>
+        </div>
+        <div class="col-md-9">
+        <div class="input-group col-md-offset-8" style="margin-top:20px;">
+                <input type="text" class="form-control" style="background-color: #1A1A1A;">
+                <span class="input-group-addon" style="background-color: #1A1A1A;"><span class="glyphicon glyphicon-search" ></span></span>
+            </div>
+        </div>
+    </div>
+
+        <div class="row" style="margin-top: 40px; margin-bottom: 40px;">
+        {% get_videos as videos %}
+           {% for video in videos %}
+            <div class="col-md-2">
+            <a href="{% pageurl video %}"><img src="http://img.youtube.com/vi/{{ video.youtube_link|get_video_id }}/0.jpg" width="180"></a>
+            <a href="{% pageurl video %}"><p>{{ video.title }}</p></a>
+
+            </div>
+            {% endfor %}
+        </div>
+        {% block content %}
+        {% endblock %}
+         <div class="row">
+        <h3>On the Couch</h3>
+         {% get_videos_couch as videos %}
+        {% for video in videos %}
+        <div class="col-md-2">
+            <a href="{% pageurl video %}"><img src="http://img.youtube.com/vi/{{ video.youtube_link|get_video_id }}/0.jpg" width="180"></a>
+            <a href="{% pageurl video %}"><p>{{ video.title }}</p></a>
+
+        </div>
+        {% endfor %}
+    </div>
+    </div>
+    <footer>
+        <div class="container" style="margin-top: 20px;">
+            <p class="text-center" style="font-size: 10px; color: #808080;">
+    Copyright © 2014 TheHuffingtonPsst.com, Inc.
+    "The Huffington Psst" is a registered trademark of TheHuffingtonPsst.com, Inc. All rights reserved.
+    Part of HuffPsst News • HPMG News
+</p>
+        </div>
+    </footer>
+    <!-- jQuery Version 1.11.1 -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type='text/javascript' src='//cdn.jsdelivr.net/jquery.marquee/1.3.1/jquery.marquee.min.js'></script>
+    <script type="text/javascript">
+        $('.marquee').marquee({
+        pauseOnHover: true,
+        duration: 15000,
+        });
+    </script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-hover-dropdown/2.0.10/bootstrap-hover-dropdown.min.js"></script>
+
+</body>
+
+</html>

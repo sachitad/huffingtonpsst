@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+
+{% block content %}
+    <h1>{{ self.title }}</h1>
+    <i>{{ self.author }}, {{ self.updated }}</i>
+    <p class="text-center">{% image self.featured_image fill-1000x300 %}</p>
+    <p>{{ self.body|richtext }}</p>
+    <p>------------------------------</p>
+    <p>Category: <b><a href="{% pageurl self.get_parent %}">{{ self.get_parent }}</a></b></p>
+    <p>------------------------------</p>
+    <p><b>Tags: </b>{%  for tag in self.tags.all %}{{ tag }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+    {% if self.related_comments.all %}
+    <hr />
+        <h2 class="text-success">Comments</h2>
+    <hr />
+        {% for comment in self.related_comments.all %}
+            {% if comment.is_active %}
+                <p><b>{{ comment.name }}</b> {% if comment.bio %}, <i>{{ comment.bio }}</i>{% endif %}</p>
+                <p>{{ comment.comment }}</p>
+                <p><i>{{ comment.created }}</i></p>
+                <hr />
+            {% endif %}
+        {% endfor %}
+
+    {% endif %}
+{% endblock %}

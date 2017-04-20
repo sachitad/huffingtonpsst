@@ -1,0 +1,163 @@
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags home_page_tags %}
+
+<style type="text/css">
+    .rich-text{
+        color: #666;
+        font-family: Arial;
+        font-size: 13px;
+    line-height: 18px;
+    }
+</style>
+<div id="top_featured_post">
+	<!-- BEGIN top_featured_post CONTENT -->
+{% if articles %}
+	<div id="top_blog" data-beacon='{"p":{"mnid":"topBlog","plid":5668271,"mpid":1}}'>
+		<div class="entry no_border" id="blog_5668271">
+			<div class="top_blog">
+			  <div class="author_bottom_desc">
+			      <div class="first_blog_headshot">
+					<a href="">
+                        {% image articles.0.author.image original id="blogger-headshot" %}
+                        </a>
+				</div>
+
+				<div class="blogger_credit">
+				<div class="byline_timestamp blogger_name">
+				                   <a href="">{{ articles.0.author.title|title }}</a>
+                <p class="author_teaser" style="margin-left: 2px !important; float:left; width:234px;">
+                    {{ articles.0.author.short_bio }}</p>
+				</div>
+
+				</div>
+
+			  </div>
+			  <div class="clear"></div>
+				<div class="col entry_right">
+					<h3><a href="{% if articles.0.custom_redirect_url %}{{ articles.0.custom_redirect_url }}{% else %}{% pageurl articles.0 %}{% endif %}"
+                           {% if articles.0.custom_redirect_url %}target="_blank"{% endif %}
+                           style="line-height: 22px !important;font-weight: bold;font-size: 16px;font-family: arial;color: #1A1A1A;">
+                        {{ articles.0.title }}</a></h3>
+				</div>
+
+				<div class="clear"></div>
+
+                {{ articles.0.body|richtext|truncatewords_html:115 }}
+
+			</div>
+		</div>
+	</div> <!-- top_blog -->
+{% endif %}
+	<!-- END top_featured_post CONTENT -->
+</div><!-- top_featured_post -->
+
+	<div class="clear"></div>
+
+	<div id="featured_posts_long" data-beacon='{"p":{"mnid":"featBlg"}}'>
+		<div id="featured_upper">
+
+			<div id="hp_featured_posts_main">
+				<div id="hp_featured_posts_all_pages">
+
+					<!-- BEGIN hp_featured_posts_all_pages CONTENT -->
+
+<div id="hp_featured_posts_page_1">
+
+
+      {% for article in articles %}
+        {% if articles %}
+          {% if not forloop.first %}
+        <div class="entry " id="blog_{{ forloop.counter }}">
+            <div class="col entry_left">
+
+            </div>
+            <div class="col entry_right">
+                <h3><a href="{% if article.custom_redirect_url %}{{ article.custom_redirect_url }}{% else %}{% pageurl article %}{% endif %}"
+                       {% if article.custom_redirect_url %}target="_blank"{% endif %}
+                       style="line-height:18px !important;font-weight: bold;font-size: 16px;font-family: arial;color: #1A1A1A;">
+                    {{ article.title }}</a></h3>
+                <div class="green_entry_bar"></div>
+			</div>
+
+			<div class="clear"></div>
+
+                {{ article.body|richtext|truncatewords_html:50 }}
+                <p></p>
+
+			           <div class="author_bottom_desc">
+            <div class="blogger_img">
+	             <a href="{% pageurl article.author %}">
+                       {% image article.author.image original id="blogger-headshot" %}
+	             </a>
+            </div>
+            <div class="blogger_credit">
+               <div class="byline_timestamp blogger_name">
+                                 <a href="{% pageurl article.author %}">{{ article.author.title|title }}</a>
+                <p class="author_teaser" style="margin-left: 2px !important; float:left; width:234px;">
+                    {{ article.author.short_bio }}</p>
+               </div>
+
+            </div>
+           </div>
+        </div>
+          {% endif %}
+          {% endif %}
+    {% endfor %}
+
+
+  <!-- hp_featured_posts_page_1 -->
+    <!-- END hp_featured_posts_all_pages CONTENT -->
+      </div><!-- hp_featured_posts_all_pages -->
+
+
+			</div><!-- hp_featured_posts_main -->
+
+		</div><!-- featured_upper -->
+	</div><!-- featured_posts_long -->
+<!-- Dont miss HP bloggers -->
+	<div class="feature_title_wrap feature_title_bg" >
+	 <div class="uppercase float_left bold arial_12" id="all_featured_posts_title">don't miss huffpsst bloggers</div>
+	</div>
+	<div class="clear"></div>
+
+	<div id="hp_dont_miss_main" data-beacon='{"p":{"mnid":"dont_miss_blogs"}}'>
+		<div id="hp_dont_miss_all_pages">
+<!--?= $b['image_size'] ?-->
+
+{% for author in authors %}
+<div class="new_dont_miss_container" data-beacon='{"p":{"plid":5682444}}'>
+	<!-- headshot -->
+	<div class="float_left blogger_img" data-beacon='{"p":{"lnid":"img"}}'>
+		<a href="">
+			  {% image author.image original id="blogger-headshot" %}
+		</a>
+	</div>
+	<!-- title -->
+	<div class="blogger_credit">
+		<div class="uppercase vertical_css" data-beacon='{"p":{"lnid":"vert"}}'>
+        {% get_article author as article %}{% for article in article  %}
+        <a href="{% pageurl article.category %}">{{ article.category }}</a>
+        {% endfor %}
+           </div>
+		<a class="new_dont_miss_entry_author" data-beacon='{"p":{"lnid":"auth"}}' href="">{{ author.title|title }}</a>
+		<div class="new_dont_miss_entry_title" data-beacon='{"p":{"lnid":"hdln"}}'>
+
+        {% get_article author as article %}{% for article in article  %}
+            {% if article.custom_redirect_url %}
+                <a href="{{ article.custom_redirect_url }}" target="_blank">{{ article }}</a>
+            {% else %}
+                <a href="{% pageurl article %}">{{ article }}</a>
+            {% endif %}
+        {% endfor %}
+
+        </div>
+	</div>
+	<div class="clear"></div>
+</div>
+{% endfor %}
+
+		</div> <!-- hp_dont_miss_all_pages -->
+	</div> <!-- hp_dont_miss_main -->
+
+</div><!-- all_featured_posts -->
+

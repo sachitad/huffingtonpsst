@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+{% load menu_tags home_page_tags static %}
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>HuffPsst</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+<div class="container">
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&appId=689399857793710&version=v2.0";
+      fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <div class="well" style="padding: 5px;">
+        <ul class="list-inline">
+            <li><b>AP</b></li>
+            <li><b>Smarter Ideas</b></li>
+            <li><b>Life Lessons</b></li>
+            <li><b>iOS App</b></li>
+            <li><b>Android App</b></li>
+            <li><b>More</b></li>
+            <li class="pull-right"><b> | Create Account</b></li>
+            <li class="pull-right"><b>Login</b></li>
+        </ul>
+    </div>
+    <div class="text-center" style="color: #A99C94;">
+        {% now "F j, o" %}
+    </div>
+    <div class="text-center">
+        <img src="http://s.huffpost.com/images/v/logos/v4/homepage.gif?v9" />
+    </div>
+    <div class="row">
+        <div class="col-md-7">
+            <div class="input-group col-md-offset-7">
+                <input type="text" class="form-control" placeholder="Search the Huffington Psst">
+                <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="fb-like col-md-offset-6" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button_count"
+                 data-action="like" data-show-faces="true" data-share="false"></div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8">
+        </div>
+            <div class="col-md-4">
+                <form class="form-inline">
+                    <div class="form-group">
+                        <label class="sr-only" for="exampleInputEmail2">Email address</label>
+                        <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Enter email">
+                    </div>
+                    <button class="btn btn-sm btn-success">Subscribe</button>
+                </form>
+            </div>
+
+    </div>
+    <!-- Page Content -->
+    <div class="container">
+            {% block content %}
+            {% endblock %}
+
+
+</div>
+    <!-- jQuery Version 1.11.1 -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-hover-dropdown/2.0.10/bootstrap-hover-dropdown.min.js"></script>
+
+</body>
+
+</html>

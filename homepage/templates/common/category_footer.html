@@ -1,0 +1,10 @@
+{% load wagtailimages_tags wagtailcore_tags %}
+<div class="row">
+<ul class="list-unstyled">
+    <h4 class="text-success">Categories</h4>
+    {% for category in categories %}
+        <li>{% image category.image fill-80x80 %}</li>
+        <li><a href="{% pageurl category %}">{{ category.title }}</a></li>
+    {% endfor %}
+</ul>
+</div>
